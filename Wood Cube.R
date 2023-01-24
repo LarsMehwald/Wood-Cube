@@ -1,4 +1,11 @@
-# create objects
+##########################################################
+# Wood Cube
+# Lars Mehwald
+##########################################################
+
+##########################################################
+# create objects ("loading" wood bricks)
+##########################################################
 
 # array is indexed starting with 1
 e <- list()
@@ -40,7 +47,9 @@ e[[4]] <- e4
 e[[5]] <- e5
 e[[6]] <- e6
 
-# create functions to manipulate objects
+##########################################################
+# create functions to manipulate objects/ bricks
+##########################################################
 
 rotate_along_z_r <- function(x) {
   # going throuh each horizontal layer separately
@@ -77,6 +86,10 @@ lift_1 <- function(x) {
   return(tt)
 }
 
+##########################################################
+# Create aggregate functions that move a brick to a defined position
+##########################################################
+
 to1 <- function(x) lift_1(x)
 # to1b <- function(x) rotate_along_z_r(rotate_along_z_r(to1(x)))
 to2 <- function(x) rotate_along_x_r(rotate_along_x_r(lift_1(x)))
@@ -92,11 +105,11 @@ to5b <- function(x) rotate_along_x_r(rotate_along_x_r(to5(x)))
 to6 <- function(x) rotate_along_y_r(rotate_along_y_r(rotate_along_y_r(rotate_along_z_r(lift_1(x)))))
 to6b <- function(x) rotate_along_x_r(rotate_along_x_r(to6(x)))
 
-# create function to evaluate success
+##########################################################
+# create a df that controlls the rotations 
+# (the values of the df are used as inputs to the rotation)
+##########################################################
 
-# create loop to test all possibilities
-
-# create a df that controlls the rotations
 df <- data.frame()
 i = 1
 for (i2 in 1:2) {
@@ -116,6 +129,11 @@ for (i2 in 1:2) {
   }
 }
 rm(i)
+
+##########################################################
+# Loop to test all possibilities, incl a function to evaluate success
+# possible combinations are printed to the console
+##########################################################
 
 for (l2 in 2:6) {
   for (l3 in 2:6) {
